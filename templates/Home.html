@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <section>
+        <h2>Ongoing Events</h2>
+
+        <div id="event-list"> 
+    {% for event in events %}
+    <div id="event-details">
+    <a href="{% url 'event' event.id %}"><p>{{event.name}}</a></p>
+    <p>{{event.Event_date}}</p>
+</div>
+    <hr>
+    {% endfor %}
+</div>
+
+</section>
+
+<section>
+
+    <h2>Participatns of Event </h2>
+    {% for participant in participants %}
+    <h3>{{participant.name}}</h3>
+
+    {% endfor %}
+    <hr>
+    {% endblock %}
+
+</section>
+</body>
+</html>

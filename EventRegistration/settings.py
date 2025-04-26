@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-(cn3mb1-$$$++p!a9p+isf55oa9y&in++t&psj6_%=qzdy5pwi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+AUTH_USER_MODEL='events.User'
 
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -55,7 +56,9 @@ ROOT_URLCONF = 'EventRegistration.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR/'templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

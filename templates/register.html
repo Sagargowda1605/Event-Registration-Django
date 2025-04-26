@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<form action="{% url 'user_register' %}" method="POST">{% csrf_token %}
+    <label for="">Enter Email</label>
+    <input type="text" name="email" id="" placeholder="eg: dennis@123">
+    <label for="">Create Username</label>
+    <input type="text" name="username" id="">
+    <label for="">Enter Password</label>
+    <input type="password" name="password" id="">
+    <input type="submit" name="" id="" value="Register">
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h3>Are you really want to regsiter for {{event.name}}</h3>
+<form action="{% url 'confirmation' event.id %}" method="POST">{% csrf_token %}
+    <input type="submit" value="Register">
+</form>
+<a href="{% url 'event' event.id %}"><input type="button" value="Back"></a>
+
+{% endblock %}
