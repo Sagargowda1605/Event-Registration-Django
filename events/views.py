@@ -3,6 +3,8 @@ from django.shortcuts import render,redirect
 from .models import User,Event,Submission
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from .forms import submission_form
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -48,6 +50,8 @@ def user_register(request):
 
     return render(request,'register.html',{})
 
+
+@login_required(login_url='/login_user/')
 def user_profile(request,pk):
     user=User.objects.get(id=pk)
 
@@ -71,14 +75,18 @@ def home_page(request):
     return render(request,'Home.html',context)
 
 
+@login_required(login_url='/login')
 def event_details(request,pk):
     event=Event.objects.get(id=pk)
+    submitted=Submission.objects.filter(user=request.user,event=event).exists()
 
     context={
-        'event':event
+        'event':event,
+        'submitted':submitted
     }
     return render(request,'Event_details.html',context)
 
+@login_required(login_url='/login')
 def event_confirmation(request,pk):
     event=Event.objects.get(id=pk)
     if request.method=="POST":
@@ -94,5 +102,48 @@ def event_confirmation(request,pk):
     
     return render(request,'confirmation.html',context)
 
+
+@login_required(login_url='/login')
+def project_submission(request,pk):
+    event=Event.objects.get(id=pk)
+    form=submission_form()
+     
+
+    if request.method=='POST':
+        form=submission_form(request.POST)
+        if form.is_valid():
+            Submission=form.save(commit=False)
+            Submission.user=request.user
+            Submission.event=event
+            Submission.save()
+            return redirect('Home')
+
+    context={
+        'event':event,
+        'form':form
+    }
+
+    return render(request,'project_submission.html',context)
+
+
+@login_required(login_url='/login')
+def project_update(request,pk):
+    sub=Submission.objects.get(id=pk)
+    print(sub)
+    event=sub.event
+    form=submission_form(instance=sub)
+
+
+    if request.method=="POST":
+        form=submission_form(request.POST,instance=sub)
+        if form.is_valid():
+            form.save()
+            return redirect('user_profile',request.user.id)
+    context={
+        'form':form,
+        'event':event
+    }
+
+    return render(request,'project_submission.html',context)
 
 

@@ -6,6 +6,13 @@
 <div>
 <section><h1>{{event.name}}</h1></section>
 <section><h3>{{event.Event_date}}</h3></section>
+{% if request.user in event.participants.all%}
+{% if  not submitted %}
+<a href="{% url 'submit' event.id %}">Submit-Project</a>
+{% endif %}
+{% else %}
+<a href="{% url 'submit' event.id %}">Register</a>
+{% endif %}
 <section><h5>{{event.descritpion}}</h5></section>
 
  <section>
@@ -16,14 +23,6 @@
 {% endfor %}
 <hr>
 </section>
-</div>
-
-<div>
-    <section>
-<a href="{% url 'Home' %}"><input type="button" value="Back"></a>
-<a href="{% url 'confirmation' event.id %}"><input type="button" value="regsiter"></a>
-</section>
-
 </div>
 
 

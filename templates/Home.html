@@ -15,7 +15,9 @@
     {% for event in events %}
     <div id="event-details">
     <a href="{% url 'event' event.id %}"><p>{{event.name}}</a></p>
-    <p>{{event.Event_date}}</p>
+    <p>Event-start: {{event.Event_Start_date}}</p>
+    <p>Event-end: {{event.Event_end_Date}}</p>
+    <p>Register-before:{{event.Registration_last_date}}</p>
 </div>
     <hr>
     {% endfor %}

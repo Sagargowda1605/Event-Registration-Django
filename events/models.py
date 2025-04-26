@@ -19,7 +19,9 @@ class User(AbstractUser):
 
 class Event(models.Model):
     name=models.CharField(max_length=100)
-    Event_date=models.DateField()
+    Event_Start_date=models.DateField(null=True)
+    Event_end_Date=models.DateField(null=True)
+    Registration_last_date=models.DateField(null=True)
     descritpion=models.TextField(null=True,blank=True)
     participants=models.ManyToManyField(User,blank=True,related_name="events")
     created_on=models.DateField(auto_now_add=True)
@@ -30,10 +32,10 @@ class Event(models.Model):
         return self.name
     
 class Submission(models.Model):
-    user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True,related_name='Submissions')
     title=models.CharField(max_length=100)
     details=models.TextField(blank=True,null=True)
-    event=models.ForeignKey(Event,unique=True,on_delete=models.SET_NULL,null=True)
+    event=models.ForeignKey(Event,on_delete=models.SET_NULL,null=True)
     submited_on=models.DateTimeField(auto_now=True)
 
     def __str__(self):

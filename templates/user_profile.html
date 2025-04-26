@@ -2,12 +2,24 @@
 
 {% block content %}
 
-{% for event in user.events.all %}
 
+<div> 
+    <h2>My Events</h2>
+{% for event in user.events.all %}     
 <section>
-    <a href="{% url 'event' event.id %}">{{event.name}}</a>
+    <h2><a href="{% url 'event' event.id %}">{{event.name}}</a></h2>
 </section>
-
 {% endfor %}
+</div>
+
+
+<div> 
+    <h2>My Submissions</h2>
+{% for sub in user.Submissions.all %}     
+<section>
+    <h2><a href="{% url 'update-project' sub.id %}">{{sub.title}}</a></h2>
+</section>
+{% endfor %}
+</div>
 
 {% endblock %}
