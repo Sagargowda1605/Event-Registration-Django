@@ -10,7 +10,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     Bio=models.TextField(blank=True,null=True)
     participant=models.BooleanField(default=True,null=True)
-    #avatar=
+    avatar=models.ImageField(default='User-icon.png')
 
 
     # this is used because isntead of the username field while login we are making the use the email

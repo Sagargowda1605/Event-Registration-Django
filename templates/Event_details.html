@@ -2,26 +2,31 @@
 
 {% block content %}
 
-
 <div>
 <section><h1>{{event.name}}</h1></section>
 <section><h3>{{event.Event_date}}</h3></section>
 {% if request.user in event.participants.all%}
 {% if  not submitted %}
-<a href="{% url 'submit' event.id %}">Submit-Project</a>
+<a class="btn1" href="{% url 'submit' event.id %}">Submit-Project</a>
+{% else %}
+<p class="Messages">You are already Submited a Project for this Event</p>
 {% endif %}
 {% else %}
-<a href="{% url 'submit' event.id %}">Register</a>
+<a class="btn1" href="{% url 'confirmation' event.id %}">Register</a>
 {% endif %}
-<section><h5>{{event.descritpion}}</h5></section>
+<section><h5>{{event.descritpion|linebreaks|urlize}}</h5></section>
 
  <section>
+
+    <div class="event-users">
     <h3>Event Participants</h3>
     
+    <div class="users-list">
     {% for user in event.participants.all %}
-<p>{{user.name}}</p>
+<div class="name-wrapper"><p>{{user.name}}</p></div>
 {% endfor %}
-<hr>
+</div>
+</div>
 </section>
 </div>
 

@@ -3,8 +3,8 @@
 {% block content %}
 <h3>Are you really want to regsiter for {{event.name}}</h3>
 <form action="{% url 'confirmation' event.id %}" method="POST">{% csrf_token %}
-    <input type="submit" value="Register">
+    <input class="btn1" type="submit" value="Register">
 </form>
-<a href="{% url 'event' event.id %}"><input type="button" value="Back"></a>
+<a class="btn1" href="{% url 'event' event.id %}">Back</a>
 
 {% endblock %}

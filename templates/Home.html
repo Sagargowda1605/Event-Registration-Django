@@ -1,12 +1,4 @@
 {% extends 'main.html' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
     {% block content %}
     <section>
         <h2>Ongoing Events</h2>
@@ -14,12 +6,12 @@
         <div id="event-list"> 
     {% for event in events %}
     <div id="event-details">
-    <a href="{% url 'event' event.id %}"><p>{{event.name}}</a></p>
-    <p>Event-start: {{event.Event_Start_date}}</p>
-    <p>Event-end: {{event.Event_end_Date}}</p>
-    <p>Register-before:{{event.Registration_last_date}}</p>
+    <a href="{% url 'event' event.id %}"><div class="name-wrapper"><h2>{{event.name}} </h2>
+    <p>{{event.participants.count}} Registered</p>
+    <p>Registration_Deadline: {{event.Registration_last_date}}</p>
+
+</div></a>
 </div>
-    <hr>
     {% endfor %}
 </div>
 
@@ -27,14 +19,18 @@
 
 <section>
 
+
     <h2>Participatns of Event </h2>
-    {% for participant in participants %}
-    <h3>{{participant.name}}</h3>
+    <div class="users-list">
+    {% for participant in participants %}  
+    <div class="user-wrapper">
+        <img class="user-avatar" src="{{participant.avatar.url}}" alt="" srcset="">
+        <h3>{{participant.name}}</h3></div>
 
     {% endfor %}
-    <hr>
+    </div>
+    
     {% endblock %}
 
 </section>
-</body>
-</html>
+ 

@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\sagis\Desktop\eventenv"
+VIRTUAL_ENV="C:\Users\sagis\Desktop\EventRegistration\eventenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
