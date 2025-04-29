@@ -38,19 +38,19 @@ cd Event-Registration-Django
 eventenv\Scripts\activate   # For Windows
 
 3.Install Dependencies:
-pip install -r requirements.txt
+	pip install -r requirements.txt
 
 4. Alter the Database Settings in settings.py
    DB_NAME=your_db_name
-    DB_NAME=your_db_name
-    DB_USER=your_db_user
-    DB_PASSWORD=your_db_password
+   DB_NAME=your_db_name
+   DB_USER=your_db_user
+   DB_PASSWORD=your_db_password
    DB_HOST=localhost
    DB_PORT=5432
 
 5. Apply Migrations:
    python manage.py makemigrations
-python manage.py migrate
+	 python manage.py migrate
 
 
 6. Run the Development Server:
