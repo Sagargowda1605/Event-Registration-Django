@@ -87,10 +87,10 @@ WSGI_APPLICATION = 'EventRegistration.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Database Name',  # your database name
+        'NAME': 'Eventregistration',  # your database name
         'USER': 'postgres',            # your postgres username (default is 'postgres')
-        'PASSWORD': 'Your password',   # your postgres password (you set this during installation)
-        'HOST': 'localhost',            # running locally
+        'PASSWORD': 'Mattikere@1605',   # your postgres password (you set this during installation)
+        'HOST': 'postgres',            # running locally
         'PORT': '5432',                 # default postgres port
     }
 }

@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000  # ✅ Needed so it runs inside Docker
+    depends_on:
+      - postgres                                     # ❌ Typo fixed: 'postres' → 'postgres'
+    ports:
+      - "8000:8000"                                   # ✅ Needed to access app from browser
+    volumes:
+      - .:/app                                        # Optional: mount your local code
+
+  postgres:
+    image: postgres:alpine                            # ❌ Typo fixed: 'postres' → 'postgres'
+    environment:
+      POSTGRES_USER: postgres                         # ❌ Remove the "=" sign
+      POSTGRES_PASSWORD: Mattikere@1605               # ✅ Quotes are optional, but OK
+      POSTGRES_DB: Eventregistration 
+                       # ✅ Corrected spelling
+    volumes:
+      - pgdata:/var/lib/postgresql/data               # ❌ Fix spacing and key name
+
+volumes:
+  pgdata:
